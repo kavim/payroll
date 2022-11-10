@@ -2,14 +2,16 @@
 
 namespace App;
 
+use App\Position;
+use App\Schedule;
+use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
-use Spatie\MediaLibrary\Models\Media;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Employee extends Model implements HasMedia
 {
-    use HasMediaTrait;
+    use InteractsWithMedia;
 
     protected $fillable = [
         'employee_id',
@@ -65,10 +67,11 @@ class Employee extends Model implements HasMedia
     	});
     }
 
-    public function registerMediaCollections(){
+    public function registerMediaCollections(): void
+    {
         $this->addMediaCollection('avatar')
             ->singleFile()
-            ->registerMediaConversions(function(Media $media){
+            ->registerMediaConversions(function(Media $media = null){
                 $this->addMediaConversion('thumb')
                 ->format('png')
                 ->width(128)
@@ -113,7 +116,7 @@ class Employee extends Model implements HasMedia
         $url = [
             'original' => url('admin_assets/avatars/employee/'.$avatar),
             'thumb' => url('admin_assets/avatars/employee/thumb/'.$avatar),
-        ];  
+        ];
         if(!is_null($this->attributes['media_id']) && !is_null($this->avatarMedia)){
             $imgurl = $this->avatarMedia->getFullUrl();
             // $imgHeaders = @get_headers( str_replace(" ", "%20", $imgurl) )[0];

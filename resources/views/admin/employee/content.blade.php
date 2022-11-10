@@ -26,14 +26,14 @@
               <th>Publish</th>
               <th>Actions</th>
               <th>
-              
+
                 {{-- <div class="custom-control custom-checkbox pl-1 align-self-center">
                   <label class="custom-control custom-checkbox mb-0" title="Select All" data-toggle="tooltip" data-placement="right">
                     <input type="checkbox" class="custom-control-input" id="dt-live-select-all">
                     <span class="custom-control-label"></span>
                   </label>
                 </div> --}}
-              
+
               </th>
             </tr>
           </thead>
@@ -65,13 +65,13 @@
              </td>
              <td>
                <div class='table-actions'>
-                <a data-href="{{route('admin.employee.show',['employee_id'=>$employee->employee_id])}}" class='show-employee cursure-pointer'>
+                <a data-href="{{route('admin.employee.show', $employee->employee_id)}}" class='show-employee cursure-pointer'>
                   <i class='ik ik-eye text-primary'></i>
                 </a>
-                <a href="{{route("admin.employee.edit",['employee_id'=>$employee->employee_id])}}">
+                <a href="{{route("admin.employee.edit", $employee->employee_id)}}">
                   <i class='ik ik-edit-2 text-dark'></i>
                 </a>
-                <a data-href="{{route("admin.employee.destroy",['id'=>$employee->id])}}" class='delete cursure-pointer'><i class='ik ik-trash-2 text-danger'></i></a>
+                <a data-href="{{route("admin.employee.destroy", $employee->id)}}" class='delete cursure-pointer'><i class='ik ik-trash-2 text-danger'></i></a>
               </div>
              </td>
              <td>

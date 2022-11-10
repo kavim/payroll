@@ -58,3 +58,7 @@ $response = $kernel->handle(
 $response->send();
 
 $kernel->terminate($request, $response);
+
+if (file_exists(__DIR__.'/../storage/framework/maintenance.php')) {
+    require __DIR__.'/../storage/framework/maintenance.php';
+}

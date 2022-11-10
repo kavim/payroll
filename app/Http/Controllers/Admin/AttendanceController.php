@@ -36,8 +36,8 @@ class AttendanceController extends Controller
                     })
                     ->addColumn('action', function($data){
                             $btn = "<div class='table-actions'>
-                            <a href='".route($this->folder."edit",['id'=>$data->id])."'><i class='ik ik-edit-2 text-dark'></i></a>
-                            <a data-href='".route($this->folder."destroy",['id'=>$data->id])."' class='delete cursure-pointer'><i class='ik ik-trash-2 text-danger'></i></a>
+                            <a href='".route($this->folder."edit", $data->id)."'><i class='ik ik-edit-2 text-dark'></i></a>
+                            <a data-href='".route($this->folder."destroy", $data->id)."' class='delete cursure-pointer'><i class='ik ik-trash-2 text-danger'></i></a>
                             </div>";
                             return $btn;
                     })
@@ -63,16 +63,16 @@ class AttendanceController extends Controller
     }
 
     public function create()
-    {   
+    {
         $employees = Employee::get();
         return View($this->folder."create",[
             'form_store' => route($this->folder.'store'),
             'employees' => $employees,
         ]);
     }
-    
+
     public function store(AttendanceRequest $request)
-    {   
+    {
         $data = [
             'date' => $request->date,
             'employee_id' => $request->employee_id,
@@ -89,7 +89,7 @@ class AttendanceController extends Controller
             ]);
     }
 
-    public function show(Attendance $attendance){   
+    public function show(Attendance $attendance){
         abort(404);
     }
 
@@ -121,7 +121,7 @@ class AttendanceController extends Controller
     }
 
     public function destroy(Request $request,$id)
-    {   
+    {
         $trash = Attendance::where('id',$id)->delete();
         if($trash){
             return response()->json([

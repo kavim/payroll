@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\EmployeeController;
+use App\Http\Controllers\Admin\OvertimeController;
+
 /*application configration routes*/
 /*
 Route::group(['prefix'=>'clear'],function(){
@@ -48,7 +51,7 @@ Route::post('/checkin',"Admin\CheckInController@store")->name('admin.checkin.sto
 Route::put('/checkin',"Admin\CheckInController@update")->name('admin.checkin.update');
 
 Route::group(['namespace'=>'Admin','as'=>'admin.'],function(){
-	
+
 	Route::group(['namespace'=>'Auth'],function(){
 		Route::get('/login','AuthController@showLogin')->name('showLogin');
 		Route::post('/login','AuthController@login')->name('login');
@@ -67,7 +70,7 @@ Route::group(['namespace'=>'Admin','as'=>'admin.'],function(){
 
 		// Dashboard Routes
 		Route::get("/dashboard",'DashboardController@dashboard')->name('dashboard');
-		
+
 		//admin profile route
 		Route::get("/profile","ProfileController@index")->name('profile.index');
 		Route::post("/profile","ProfileController@update")->name('profile.update');
@@ -88,13 +91,13 @@ Route::group(['namespace'=>'Admin','as'=>'admin.'],function(){
 		Route::post('all-delete/schedule/',"ScheduleController@massDelete")->name('schedule.massDelete');
 
 		//employee routes
-		Route::resource('employee','EmployeeController');
+		Route::resource('employee', EmployeeController::class);
 		Route::post('getdata/employee',"EmployeeController@getData")->name('employee.getData');
 		Route::post('get-employees-data',"EmployeeController@getDataTable")->name('employee.getDataTable');
 		Route::post('all-delete/employee/',"EmployeeController@massDelete")->name('employee.massDelete');
 
 		//overtime routes
-		Route::resource('overtime','OvertimeController');
+		Route::resource('overtime', OvertimeController::class);
 		Route::post('getdata/overtime',"OvertimeController@getData")->name('overtime.getData');
 		Route::post('get-overtime-data',"OvertimeController@getDataTable")->name('overtime.getDataTable');
 		Route::post('all-delete/overtime/',"OvertimeController@massDelete")->name('overtime.massDelete');
